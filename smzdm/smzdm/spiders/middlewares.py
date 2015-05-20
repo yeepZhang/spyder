@@ -10,10 +10,6 @@ from scrapy.http import Request, FormRequest
 class ProxyMiddleware(object):
 
     def process_request(self, request, spider):
-        # proxy_ip_port = "115.29.202.148:8888"
-        # # proxy_user_pass = "awesome:dude"
-        # # Set the location of the proxy
-        # request.meta['proxy'] = "http://%s" % proxy_ip_port
 
-        print("I'm in the Process_Request")
+        print("Request comes here")
 

@@ -51,7 +51,7 @@ class SmzdmSpider(scrapy.spider.Spider):
                     "AJSTAT_ok_times": "100"
                 }
                 self.cookies['__jsl_clearance'] = c
-            yield FormRequest(url, meta={'cookiejar': i, 'proxy': "http://115.29.202.148:8888"}, headers=self.headers, cookies=self.cookies, callback=self.parse)
+            yield FormRequest(url, meta={'cookiejar': i}, headers=self.headers, cookies=self.cookies, callback=self.parse)
     # overwrite process request
     def parse(self, response):
         hxs = Selector(response)
