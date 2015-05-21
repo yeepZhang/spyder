@@ -7,13 +7,13 @@ import requests
 import re
 
 
-class SmzdmSpider(scrapy.spider.Spider):
+class SmzdmSpider(scrapy.Spider):
     # use for identify
     name = "smzdm"
     allowed_domains = ["smzdm.com"]
     # start urls
     start_urls = [
-        "http://www.smzdm.com/"
+        "http://www.smzdm.com/p1",
     ]
     # first function
 
@@ -23,19 +23,8 @@ class SmzdmSpider(scrapy.spider.Spider):
 
     def start_requests(self):
         for i, url in enumerate(self.start_urls):
-            # session = requests.session()
-            # session.headers = self.headers
-            # r = session.get('http://www.smzdm.com/')
-            r = requests.get('http://www.smzdm.com/', headers=self.headers, cookies=self.cookies)
-            if r.status_code == 521:
-                print "this is 521"
-                e = 'c.push\("(.*?)"\)'
-                m = re.findall(e, r.content)
-                c = ''.join(m)
-                print c
-                self.cookies['__jsl_clearance'] = c
-            yield FormRequest(url, headers=self.headers, cookies=self.cookies)
-    # overwrite process request'
+            yield FormRequest(url)
+    # overwrite process request
 
     def parse(self, response):
         self.log('A response from %s just arrived!' % response.url)
